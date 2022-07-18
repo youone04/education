@@ -1,0 +1,30 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/be-education/node_modules
+/fe-education/node_modules
+/fe-education/.pnp
+/fe-education/.pnp.js
+
+# testing
+/fe-education/coverage
+
+# production
+/fe-education/build
+
+# misc
+/fe-education/.DS_Store
+/fe-education/.DS_Store
+/fe-education/.DS_Store
+/fe-education/.DS_Store
+/fe-education/.DS_Store
+/fe-education/.DS_Store
+/fe-education/.DS_Store
+/fe-education/.env.local
+/fe-education/.env.development.local
+/fe-education/.env.test.local
+/fe-education/.env.production.local
+
+/fe-education/npm-debug.log*
+/fe-education/yarn-debug.log*
+/fe-education/yarn-error.log*
