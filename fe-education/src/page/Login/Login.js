@@ -12,8 +12,6 @@ export default function Login() {
   const getDataLogin = useSelector((state) => state.login);
   const { token, loading, error } = getDataLogin.login;
 
-  console.log(token)
-
   const handleLogin = async (e) => {
     e.preventDefault();
     const dataSend = {
