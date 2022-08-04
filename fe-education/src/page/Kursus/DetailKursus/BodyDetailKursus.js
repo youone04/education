@@ -1,7 +1,7 @@
 import React from "react";
 
 function BodyDetailKursus(props) {
-  console.log(props.detailKursus);
+  // console.log(props.detailKursus);
   return (
     <>
       <div className="content-wrapper">
@@ -135,55 +135,97 @@ function BodyDetailKursus(props) {
                     irure terr.
                   </p>
                   <br />
-                  <div className="text-muted">
-                    <p className="text-sm">
-                      Client Company
-                      <b className="d-block">Deveint Inc</b>
-                    </p>
-                    <p className="text-sm">
-                      Project Leader
-                      <b className="d-block">Tony Chicken</b>
-                    </p>
+
+                  <div className="card-body">
+                    <div className="form-group">
+                      <label>Judul:</label>
+                      <div
+                        className="input-group date"
+                        id="reservationdate"
+                        data-target-input="nearest"
+                      >
+                        <input
+                          type="text"
+                          className="form-control datetimepicker-input"
+                          data-target="#reservationdate"
+                        />
+                        <div
+                          className="input-group-append"
+                          data-target="#reservationdate"
+                          data-toggle="datetimepicker"
+                        >
+                          <div className="input-group-text">
+                            <i className="fa fa-title" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label>Keterangan:</label>
+                      <div
+                        className="input-group date"
+                        id="reservationdate"
+                        data-target-input="nearest"
+                      >
+                        <input
+                          type="text"
+                          className="form-control datetimepicker-input"
+                          data-target="#reservationdate"
+                        />
+                        <div
+                          className="input-group-append"
+                          data-target="#reservationdate"
+                          data-toggle="datetimepicker"
+                        >
+                          <div className="input-group-text">
+                            <i className="fa fa-se" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label>Link:</label>
+                      <div
+                        className="input-group date"
+                        id="reservationdate"
+                        data-target-input="nearest"
+                      >
+                        <input
+                          type="text"
+                          className="form-control datetimepicker-input"
+                          data-target="#reservationdate"
+                        />
+                        <div
+                          className="input-group-append"
+                          data-target="#reservationdate"
+                          data-toggle="datetimepicker"
+                        >
+                          <div className="input-group-text">
+                            <i className="fa fa-calendars" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <button className="btn btn-primary">SIMPAN</button>
+                    </div>
                   </div>
-                  <h5 className="mt-5 text-muted">Project files</h5>
+
+                  <h5 className="mt-5 text-muted">List Link</h5>
                   <ul className="list-unstyled">
-                    <li>
-                      <a href className="btn-link text-secondary">
-                        <i className="far fa-fw fa-file-word" />{" "}
-                        Functional-requirements.docx
-                      </a>
-                    </li>
-                    <li>
-                      <a href className="btn-link text-secondary">
-                        <i className="far fa-fw fa-file-pdf" /> UAT.pdf
-                      </a>
-                    </li>
-                    <li>
-                      <a href className="btn-link text-secondary">
-                        <i className="far fa-fw fa-envelope" />{" "}
-                        Email-from-flatbal.mln
-                      </a>
-                    </li>
-                    <li>
-                      <a href className="btn-link text-secondary">
-                        <i className="far fa-fw fa-image " /> Logo.png
-                      </a>
-                    </li>
-                    <li>
-                      <a href className="btn-link text-secondary">
-                        <i className="far fa-fw fa-file-word" />{" "}
-                        Contract-10_12_2014.docx
-                      </a>
-                    </li>
+                    {props.detailKursus.link.map((lk, i) => {
+                      return (
+                        <li>
+                          <a href={lk.link} target='_blank' className="btn-link text-secondary text-decoration-none">
+                            <i className="far fa-fw fa-file-word" />{" "}
+                           {lk.judul}
+                          </a>
+                          <p>{lk.keterangan}</p>
+                        </li>
+                      );
+                    })}
                   </ul>
-                  <div className="text-center mt-5 mb-3">
-                    <a href="#" className="btn btn-sm btn-primary">
-                      Add files
-                    </a>
-                    <a href="#" className="btn btn-sm btn-warning">
-                      Report contact
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
