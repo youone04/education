@@ -1,6 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 
 function SectionHeader() {
+  console.log('sectio header')
   return (
     <section className="content-header">
       <div className="container-fluid">
@@ -22,4 +23,4 @@ function SectionHeader() {
   );
 }
 
-export default SectionHeader;
+export default memo(SectionHeader);

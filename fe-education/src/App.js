@@ -9,6 +9,7 @@ import PageNotFound from "./page/PageNotFound/PageNotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Kursus from "./page/Kursus/ManageKursus/Kursus";
 import TambahKursus from "./page/Kursus/TambahKursus/TambahKursus";
+import DetailKursus from "./page/Kursus/DetailKursus/DetailKursus";
 
 const ROLES = {
   Root: "root",
@@ -38,6 +39,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/manage-kursus" element={<Kursus />} />
             <Route path="/tambah-kursus" element={<TambahKursus />} />
+            <Route path="/detail-kursus/:id" element={<DetailKursus />} />
           </Route>
 
           {/* catch page not found */}

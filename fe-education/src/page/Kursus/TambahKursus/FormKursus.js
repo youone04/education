@@ -1,8 +1,44 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 function FormKursus(props) {
-    const navigate = useNavigate();
-   
+  const navigate = useNavigate();
+
+  // form waktu
+  const addFormhari = () => {
+    props.setHari([...props.varHari, { hari: "" }]);
+  };
+
+  const removeFormhari = (i) => {
+    const newFormValue = [...props.varHari];
+    newFormValue.splice(i, 1);
+    props.setHari(newFormValue);
+  };
+
+  const handleChangeHari = (event) => {
+    const updateHari = [...props.varHari];
+    updateHari[event.target.dataset.id][event.target.className.split(" ")[0]] =
+      event.target.value;
+    props.setHari(updateHari);
+  };
+
+  // form Hari
+  const addFormWaktu = () => {
+    props.setWaktu([...props.varWaktu, { waktu: "" }]);
+  };
+
+  const removeFormWaktu = (i) => {
+    const newFormValue = [...props.varWaktu];
+    newFormValue.splice(i, 1);
+    props.setWaktu(newFormValue);
+  };
+
+  const handleChangeWaktu = (event) => {
+    const updateWaktu = [...props.varWaktu];
+    updateWaktu[event.target.dataset.id][event.target.className.split(" ")[0]] =
+      event.target.value;
+    props.setWaktu(updateWaktu);
+  };
+
   return (
     <section className="content">
       <div className="container-fluid">
@@ -12,7 +48,10 @@ function FormKursus(props) {
               <div className="card-header">
                 <h3 className="card-title">Tambah Kursus</h3>
               </div>
-              <form onSubmit={props.handleSubmit(props.onSubmit)} id="quickForm">
+              <form
+                onSubmit={props.handleSubmit(props.onSubmit)}
+                id="quickForm"
+              >
                 <div className="card-body">
                   <div className="form-group">
                     <label htmlFor="kursus">Judul Kursus</label>
@@ -31,7 +70,11 @@ function FormKursus(props) {
                       <div className="input-group-prepend">
                         <span className="input-group-text">Rp</span>
                       </div>
-                      <input type="number" className="form-control"  {...props.register("harga")} />
+                      <input
+                        type="number"
+                        className="form-control"
+                        {...props.register("harga")}
+                      />
                       <div className="input-group-append">
                         <span className="input-group-text">.00</span>
                       </div>
@@ -47,23 +90,89 @@ function FormKursus(props) {
                     ></textarea>
                   </div>
 
-                  <div className="form-group">
-                    <label>Hari Kursus</label>
-                    <select multiple className="form-control"  {...props.register("hari")}>
-                      <option value={'jumat'}>jumat</option>
-                      <option value={'sabtu'}>sabtu</option>
-                      <option value={'minggu'}>minggu</option>
-                    </select>
-                  </div>
+                  {props.varHari.map((d, i) => {
+                    const hariNama = `hari-${i}`;
+                    return (
+                      <div key={i} className="form-group">
+                        <label>Hari Kursus</label>
+                        <select
+                          onChange={handleChangeHari}
+                          multiple
+                          data-id={i}
+                          className="hari form-control"
+                          name={hariNama}
+                          id={hariNama}
+                        >
+                          <option value={"jumat"}>jumat</option>
+                          <option value={"sabtu"}>sabtu</option>
+                          <option value={"minggu"}>minggu</option>
+                        </select>
+                        <button
+                          type="button"
+                          className="bg-success rounded mt-1"
+                          onClick={addFormhari}
+                        >
+                          +
+                        </button>
+                        {i ? (
+                          <button
+                            type="button"
+                            className="bg-danger rounded m-1"
+                            onClick={removeFormhari}
+                          >
+                            -
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    );
+                  })}
 
-                  <div className="form-group">
-                    <label>Jam Kursus</label>
-                    <select multiple className="form-control" {...props.register("waktu")}>
-                      <option value={'19:00 - 21:00'}>19:00 - 21:00 WIB</option>
-                      <option value={'08:00 - 10:00'}>08:00 - 10:00 WIB</option>
-                      <option value={'15:00 - 17:00'}>15:00 - 17:00 WIB</option>
-                    </select>
-                  </div>
+                  {props.varWaktu.map((d, i) => {
+                    const waktuNama = `waktu-${i}`;
+                    return (
+                      <div key={i} className="form-group">
+                        <label>Jam Kursus</label>
+                        <select
+                          multiple
+                          data-id={i}
+                          className="waktu form-control"
+                          name={waktuNama}
+                          id={waktuNama}
+                          onChange={handleChangeWaktu}
+                        >
+                          <option value={"19:00 - 21:00"}>
+                            19:00 - 21:00 WIB
+                          </option>
+                          <option value={"08:00 - 10:00"}>
+                            08:00 - 10:00 WIB
+                          </option>
+                          <option value={"15:00 - 17:00"}>
+                            15:00 - 17:00 WIB
+                          </option>
+                        </select>
+                        <button
+                          type="button"
+                          className="bg-success rounded mt-1"
+                          onClick={addFormWaktu}
+                        >
+                          +
+                        </button>
+                        {i ? (
+                          <button
+                            type="button"
+                            className="bg-danger rounded m-1"
+                            onClick={removeFormWaktu}
+                          >
+                            -
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    );
+                  })}
 
                   <div className="form-group">
                     <div className="custom-file">
@@ -76,7 +185,11 @@ function FormKursus(props) {
                       <label className="custom-file-label" htmlFor="customFile">
                         Pilih gambar
                       </label>
-                      <img style={{width:'20%', margin: 5, marginBottom :25}} src={props.previewGambar} alt="gambar"/>
+                      <img
+                        style={{ width: "20%", margin: 5, marginBottom: 25 }}
+                        src={props.previewGambar}
+                        alt="gambar"
+                      />
                     </div>
                   </div>
                   <div className="form-group mt-5 pt-5">

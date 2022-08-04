@@ -12,6 +12,8 @@ import routerAuth from "./routers/Auth/Auth.js";
 import routerKursus from "./routers/Kursus/Kursus.js";
 import routerUpload from "./routers/Upload/Upload.js";
 import routerUser from "./routers/Users/Users.js";
+import dbs from "./models/index.js";
+
 dotenv.config();
 const app  = express();
 const PORT = process.env.PORT || 8800
@@ -22,6 +24,8 @@ try{
     // await dbs.users.sync();
     // await dbs.roles.sync();
     // await dbs.kursus.sync();
+    // await dbs.waktu.sync();
+    // await dbs.hari.sync();
 }catch(error){
     console.log(error)
 }

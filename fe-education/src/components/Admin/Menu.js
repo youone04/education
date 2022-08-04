@@ -1,7 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
-import swal from "sweetalert";
-import jwt_decode from "jwt-decode";
-import { useEffect, useState } from "react";
+import { Link} from "react-router-dom";
+import {useState , memo } from "react";
 import { Collapse } from "react-bootstrap";
 const Menu = () => {
   const [username, setUserName] = useState("none");
@@ -152,4 +150,4 @@ const Menu = () => {
     </>
   );
 };
-export default Menu;
+export default memo(Menu);

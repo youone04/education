@@ -12,12 +12,6 @@ export default (sequelize, DataTypes) => {
         deskripsi: {
             type: DataTypes.STRING
         },
-        hari: {
-            type: DataTypes.STRING
-        },
-        waktu: {
-            type: DataTypes.STRING
-        },
         syllabus: {
             type: DataTypes.STRING
         }

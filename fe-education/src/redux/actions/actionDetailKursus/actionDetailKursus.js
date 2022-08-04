@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-export const getUsers = (token) => async (dispatch) => {
+export const getDetailKursus = (token , id) => async (dispatch) => {
   try {
     const decoded = jwt_decode(token);
     const axiosJWT = axios.create();
@@ -21,7 +21,7 @@ export const getUsers = (token) => async (dispatch) => {
     );
 
     const { data } = await axiosJWT.get(
-      `${process.env.REACT_APP_END_POINT}/users`,
+      `${process.env.REACT_APP_END_POINT}/kursus/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -29,12 +29,12 @@ export const getUsers = (token) => async (dispatch) => {
       }
     );
     dispatch({
-      type: "GET_USERS_SUCCESS",
+      type: "GET_DETAIL_KURSUS_SUCCESS",
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: "GET_USERS_FAIL",
+      type: "GET_DETAIL_KURSUS_FAIL",
       payload: error.message,
     });
   }

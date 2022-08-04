@@ -3,6 +3,7 @@ import axios from "axios";
 import {useNavigate } from "react-router-dom";
 import { getToken } from "../../redux/actions/actionLogin";
 import { useSelector, useDispatch } from 'react-redux';
+import SweetAlert from "sweetalert";
 
 export default function Login() {
   const navigate = useNavigate()
@@ -35,7 +36,9 @@ export default function Login() {
       }
 
     } catch (error) {
-      console.log(error);
+      SweetAlert("Failed", error.response && error.response.data.msg
+      ? error.response.data.msg
+      : error.message, "error");
     }
   };
 
