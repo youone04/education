@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import HariModels from "./HariModels.js";
 import KursusModels from "./KursusModels.js";
+import LinkKursusModels from "./LinkKursusModels.js";
 import RolesModels2 from "./RolesModels2.js";
 import UserModels2 from "./UserModels2.js";
 import WaktuModels from "./WaktuModels.js";
@@ -14,6 +15,7 @@ dbs.users =  UserModels2(db, Sequelize);
 dbs.kursus = KursusModels(db , Sequelize);
 dbs.waktu = WaktuModels(db , Sequelize);
 dbs.hari = HariModels(db , Sequelize);
+dbs.link = LinkKursusModels(db , Sequelize);
 
 // relational roles and users
 dbs.users.hasMany(dbs.roles, { as: "roles" });
@@ -41,6 +43,13 @@ dbs.kursus.hasMany(dbs.hari, {as: "hari"});
 dbs.hari.belongsTo(dbs.kursus , {
   foreignKey: "kursuId",
   as: "kursus"
+});
+
+//relational link and kursus
+dbs.kursus.hasMany(dbs.link , {as : 'link'});
+dbs.link.belongsTo(dbs.kursus , {
+  foreignKey: "kursuId",
+  as: "kursus",
 })
 
 export default dbs;

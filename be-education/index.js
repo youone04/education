@@ -13,6 +13,7 @@ import routerKursus from "./routers/Kursus/Kursus.js";
 import routerUpload from "./routers/Upload/Upload.js";
 import routerUser from "./routers/Users/Users.js";
 import dbs from "./models/index.js";
+import routerLink from "./routers/Link/Link.js";
 
 dotenv.config();
 const app  = express();
@@ -26,6 +27,7 @@ try{
     // await dbs.kursus.sync();
     // await dbs.waktu.sync();
     // await dbs.hari.sync();
+    await dbs.link.sync();
 }catch(error){
     console.log(error)
 }
@@ -47,6 +49,8 @@ app.use('/api' , routerAuth);
 app.use('/api', routerKursus);
 app.use('/api', routerUpload);
 app.use('/api', routerUser);
+app.use('/api', routerLink);
+
 
 
 app.listen(PORT , () => {
