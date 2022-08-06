@@ -1,7 +1,7 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components";
 import Home from "./page/Home/Home";
-import Login from "./page/Login/Login";
+import Login from "./page/LoginAdmin/LoginAdmin";
 import RequireAuth from "./components/RequireAuth";
 import Dashboard from "./page/Dashboard/Dashboard";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
@@ -10,11 +10,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Kursus from "./page/Kursus/ManageKursus/Kursus";
 import TambahKursus from "./page/Kursus/TambahKursus/TambahKursus";
 import DetailKursus from "./page/Kursus/DetailKursus/DetailKursus";
+import UserHome from "./page/UserHome/UserHome";
 
 const ROLES = {
   Root: "root",
   Editor: "editor",
   Admin: "admin",
+  User : "user"
 };
 
 function App() {
@@ -25,7 +27,7 @@ function App() {
           {/* public route */}
           <Route path="/" element={<Home />} />
           <Route element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login-admin" element={<Login />} />
           </Route>
 
           {/* private route */}
@@ -40,6 +42,16 @@ function App() {
             <Route path="/manage-kursus" element={<Kursus />} />
             <Route path="/tambah-kursus" element={<TambahKursus />} />
             <Route path="/detail-kursus/:id" element={<DetailKursus />} />
+          </Route>
+
+          <Route
+            element={
+              <RequireAuth
+                allowedRoles={[ROLES.User]}
+              />
+            }
+          >
+             <Route path="/user" element={<UserHome />} />
           </Route>
 
           {/* catch page not found */}

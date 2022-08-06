@@ -20,7 +20,7 @@ export const inputItemKursus = async(req, res) => {
       count++
       }
 
-      if(count === waktu.length) return res.status(200).json({ msg: 'success' });    
+      if(count === waktu.length) return res.status(200).json({ message: 'success' });    
     }catch(error){
       res.status(500).json(error.response && error.response.data.message
         ? error.response.data.message
@@ -39,13 +39,22 @@ export const inputItemKursus = async(req, res) => {
     }
   }
 
+  // Posts.findAll({
+  //   where: {name: "Sunshine"},
+  //   include: [{
+  //     model: User,
+  //     where: {year_birth: 1984}
+  //    }]
+  // }).then(posts => {
+  //   /* ... */
+  // });
   export const getItemDetailKursus = async(req, res) => {
     try{
       const detailKursus = await dbs.kursus.findOne({
         where: {
           id: req.params.id,
         },
-        include: ["waktu","hari" ,"link"],
+        include: ["waktu","hari" ,"link","batch"],
       });
       res.status(200).json(detailKursus)
 

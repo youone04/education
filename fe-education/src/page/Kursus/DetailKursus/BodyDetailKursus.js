@@ -1,27 +1,13 @@
 import React from "react";
+import FormAddLink from "./FormAddLink";
+import ListLink from "./ListLink";
+import SectionHeader from "./SectionHeader";
 
 function BodyDetailKursus(props) {
-  // console.log(props.detailKursus);
   return (
     <>
       <div className="content-wrapper">
-        <section className="content-header">
-          <div className="container-fluid">
-            <div className="row mb-2">
-              <div className="col-sm-6">
-                <h1>{"Kursus Detail"}</h1>
-              </div>
-              <div className="col-sm-6">
-                <ol className="breadcrumb float-sm-right">
-                  <li className="breadcrumb-item">
-                    <a href="#!!">Home</a>
-                  </li>
-                  <li className="breadcrumb-item active">{"judul"}</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </section>
+        <SectionHeader/>
         <section className="content">
           <div className="card">
             <div className="card-header">
@@ -129,103 +115,11 @@ function BodyDetailKursus(props) {
                     <i className="fas fa-paint-brush" /> Link Kursus
                   </h3>
                   <p className="text-muted">
-                    Raw denim you probably haven't heard of them jean shorts
-                    Austin. Nesciunt tofu stumptown aliqua butcher retro
-                    keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui
-                    irure terr.
+                    Silahkan input link kursus setiap jadwal yang sudah ada
                   </p>
                   <br />
-
-                  <div className="card-body">
-                    <div className="form-group">
-                      <label>Judul:</label>
-                      <div
-                        className="input-group date"
-                        id="reservationdate"
-                        data-target-input="nearest"
-                      >
-                        <input
-                          type="text"
-                          className="form-control datetimepicker-input"
-                          data-target="#reservationdate"
-                        />
-                        <div
-                          className="input-group-append"
-                          data-target="#reservationdate"
-                          data-toggle="datetimepicker"
-                        >
-                          <div className="input-group-text">
-                            <i className="fa fa-title" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label>Keterangan:</label>
-                      <div
-                        className="input-group date"
-                        id="reservationdate"
-                        data-target-input="nearest"
-                      >
-                        <input
-                          type="text"
-                          className="form-control datetimepicker-input"
-                          data-target="#reservationdate"
-                        />
-                        <div
-                          className="input-group-append"
-                          data-target="#reservationdate"
-                          data-toggle="datetimepicker"
-                        >
-                          <div className="input-group-text">
-                            <i className="fa fa-se" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label>Link:</label>
-                      <div
-                        className="input-group date"
-                        id="reservationdate"
-                        data-target-input="nearest"
-                      >
-                        <input
-                          type="text"
-                          className="form-control datetimepicker-input"
-                          data-target="#reservationdate"
-                        />
-                        <div
-                          className="input-group-append"
-                          data-target="#reservationdate"
-                          data-toggle="datetimepicker"
-                        >
-                          <div className="input-group-text">
-                            <i className="fa fa-calendars" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <button className="btn btn-primary">SIMPAN</button>
-                    </div>
-                  </div>
-
-                  <h5 className="mt-5 text-muted">List Link</h5>
-                  <ul className="list-unstyled">
-                    {props.detailKursus.link.map((lk, i) => {
-                      return (
-                        <li>
-                          <a href={lk.link} target='_blank' className="btn-link text-secondary text-decoration-none">
-                            <i className="far fa-fw fa-file-word" />{" "}
-                           {lk.judul}
-                          </a>
-                          <p>{lk.keterangan}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <FormAddLink data={props.detailKursus}/>
+                  <ListLink detailKursus={props.detailKursus}/>
                 </div>
               </div>
             </div>

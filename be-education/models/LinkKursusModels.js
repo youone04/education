@@ -8,8 +8,7 @@ export default (sequelize, DataTypes) => {
         },
         link: {
             type: DataTypes.STRING
-        }
-        
+        },        
     },
     {
         freezeTableName: true
