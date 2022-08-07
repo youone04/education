@@ -21,7 +21,7 @@ export const getBelajar = async (req, res) => {
       ],
     });
 
-    if (belajar.status) {
+    if (belajar && belajar.status) {
       const dataHasil = belajar.kursus.link.filter(li => li.batch_pembelian === belajar.batch_pembelian);
     //  const d = belajar['kursus']['dataValues']['link']
       const dataSend = {
@@ -30,9 +30,10 @@ export const getBelajar = async (req, res) => {
       }
       res.status(200).json(dataSend);
     } else {
-      belajar['kursus']['dataValues']['link'] = [];
+      belajar? belajar['kursus']['dataValues']['link'] = [] :null;
       res.status(200).json(belajar);
     }
+    // res.status(200).json(belajar);
   } catch (error) {
     res
       .status(500)
