@@ -15,7 +15,8 @@ export const addLinkKursus = async (req, res) => {
       keterangan,
       link,
       kursuId,
-      batchId: batch[0].id
+      batchId: batch[0].id,
+      batch_pembelian: batch[0].batchColum
     });
     res.status(200).json({ message: "success" });
   } catch (error) {

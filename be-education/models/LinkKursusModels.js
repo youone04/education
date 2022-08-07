@@ -8,7 +8,10 @@ export default (sequelize, DataTypes) => {
         },
         link: {
             type: DataTypes.STRING
-        },        
+        }, 
+        batch_pembelian: {
+            type: DataTypes.STRING
+        }       
     },
     {
         freezeTableName: true

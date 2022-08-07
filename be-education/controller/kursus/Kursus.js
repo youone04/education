@@ -30,7 +30,9 @@ export const inputItemKursus = async(req, res) => {
 
   export const getItemKursus = async(req, res) => {
     try{
-      const kursus = await dbs.kursus.findAll();
+      const kursus = await dbs.kursus.findAll({
+        include: ["waktu","hari" ,"link","batch"],
+      });
       res.status(200).json(kursus)
     }catch(error){
       res.status(500).json(error.response && error.response.data.message

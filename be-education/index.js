@@ -16,6 +16,7 @@ import dbs from "./models/index.js";
 import routerLink from "./routers/Link/Link.js";
 import routerBatch from "./routers/Batch/Batch.js";
 import routerPembelian from "./routers/Pembelian/Pembelian.js";
+import routerBelajar from "./routers/Belajar/Belajar.js";
 
 dotenv.config();
 const app  = express();
@@ -48,7 +49,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser())
 app.use(express.json())
 app.use(helmet());
-app.use(morgan('common'));
+app.use(morgan('dev'));
 app.use('/api' , routerAuth);
 app.use('/api', routerKursus);
 app.use('/api', routerUpload);
@@ -56,6 +57,8 @@ app.use('/api', routerUser);
 app.use('/api', routerLink);
 app.use('/api', routerBatch);
 app.use('/api', routerPembelian);
+app.use('/api', routerBelajar);
+
 
 
 

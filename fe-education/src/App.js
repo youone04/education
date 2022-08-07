@@ -11,6 +11,7 @@ import Kursus from "./page/Kursus/ManageKursus/Kursus";
 import TambahKursus from "./page/Kursus/TambahKursus/TambahKursus";
 import DetailKursus from "./page/Kursus/DetailKursus/DetailKursus";
 import UserHome from "./page/UserHome/UserHome";
+import Belajar from "./page/Belajar/Belajar";
 
 const ROLES = {
   Root: "root",
@@ -52,6 +53,7 @@ function App() {
             }
           >
              <Route path="/user" element={<UserHome />} />
+             <Route path="/belajar" element={<Belajar />} />
           </Route>
 
           {/* catch page not found */}
