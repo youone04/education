@@ -5,6 +5,12 @@ export default (sequelize, DataTypes) => {
         },
         batch_pembelian: {
             type: DataTypes.STRING
+        },
+        jadwal_waktu :{
+            type: DataTypes.TEXT
+        },
+        jadwal_hari :{
+            type: DataTypes.TEXT
         }
         
     },

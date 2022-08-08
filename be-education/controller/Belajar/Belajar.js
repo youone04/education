@@ -4,8 +4,8 @@ export const getBelajar = async (req, res) => {
   try {
     const belajar = await dbs.pembelian.findOne({
       where: {
-        userId: req.params.id,
-        id: req.body.id,
+        userId: req.params.userId,
+        id: req.params.id,
       },
       include: [
         {
@@ -15,7 +15,7 @@ export const getBelajar = async (req, res) => {
             {
               model: dbs.link,
               as: "link",
-            },
+            }
           ],
         },
       ],
@@ -23,7 +23,6 @@ export const getBelajar = async (req, res) => {
 
     if (belajar && belajar.status) {
       const dataHasil = belajar.kursus.link.filter(li => li.batch_pembelian === belajar.batch_pembelian);
-    //  const d = belajar['kursus']['dataValues']['link']
       const dataSend = {
         ...belajar.dataValues,
         kursus : {...belajar.kursus.dataValues, link: dataHasil}        
@@ -33,7 +32,6 @@ export const getBelajar = async (req, res) => {
       belajar? belajar['kursus']['dataValues']['link'] = [] :null;
       res.status(200).json(belajar);
     }
-    // res.status(200).json(belajar);
   } catch (error) {
     res
       .status(500)

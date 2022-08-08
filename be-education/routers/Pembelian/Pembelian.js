@@ -1,6 +1,8 @@
 import express from "express";
-import { getPembelian } from "../../controller/Pembelian/Pembelian.js";
+import { getPembelian ,postPembelian } from "../../controller/Pembelian/Pembelian.js";
 const routerPembelian = express.Router();
 
 routerPembelian.get('/pembelian/:id', getPembelian);
+routerPembelian.post('/pembelian/:userId/:kursuId', postPembelian);
+
 export default routerPembelian;

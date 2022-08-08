@@ -26,7 +26,7 @@ const initialState = {
           ...state,
           login: {
             loading: false,
-            token: '-',
+            token: null,
             error: action.payload,
           },
         };

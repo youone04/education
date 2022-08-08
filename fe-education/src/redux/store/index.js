@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { getDataBelajar } from '../reducers/reducersBelajar/reducersBelajar';
 import { getDataKursusBeli } from '../reducers/reducersBeli/reducersBeli';
 import { getDataDetailKursus } from '../reducers/ReducersDetailKursus/ReducersDetailKursus';
 import { getDataKursus } from '../reducers/ReducersKursus/ReducersKursus';
@@ -13,6 +14,7 @@ export const store = configureStore({
     dataKursus : getDataKursus,
     datDetailKursus: getDataDetailKursus,
     dataKursusPublic : getDataKursusPublic,
-    dataKursusBeli : getDataKursusBeli
+    dataKursusBeli : getDataKursusBeli,
+    dataBelajar : getDataBelajar
   },
 })

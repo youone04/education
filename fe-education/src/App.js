@@ -53,7 +53,7 @@ function App() {
             }
           >
              <Route path="/user" element={<UserHome />} />
-             <Route path="/belajar" element={<Belajar />} />
+             <Route path="/belajar/:id" element={<Belajar />} />
           </Route>
 
           {/* catch page not found */}
