@@ -1,11 +1,14 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import BatchModels from "./BatchModels.js";
 import HariModels from "./HariModels.js";
 import KursusModels from "./KursusModels.js";
 import LinkKursusModels from "./LinkKursusModels.js";
+import PembelianModels from "./PembelianModels.js";
 import RolesModels2 from "./RolesModels2.js";
 import UserModels2 from "./UserModels2.js";
 import WaktuModels from "./WaktuModels.js";
+
 
 const dbs = {};
 dbs.Sequelize = Sequelize;
@@ -16,6 +19,8 @@ dbs.kursus = KursusModels(db , Sequelize);
 dbs.waktu = WaktuModels(db , Sequelize);
 dbs.hari = HariModels(db , Sequelize);
 dbs.link = LinkKursusModels(db , Sequelize);
+dbs.batch = BatchModels(db , Sequelize);
+dbs.pembelian = PembelianModels(db , Sequelize);
 
 // relational roles and users
 dbs.users.hasMany(dbs.roles, { as: "roles" });
@@ -50,6 +55,34 @@ dbs.kursus.hasMany(dbs.link , {as : 'link'});
 dbs.link.belongsTo(dbs.kursus , {
   foreignKey: "kursuId",
   as: "kursus",
-})
+});
+
+// relational batch and kursus
+dbs.kursus.hasMany(dbs.batch , {as : 'batch'});
+dbs.batch.belongsTo(dbs.kursus , {
+  foreignKey: "kursuId",
+  as: "kursus",
+});
+
+//relational link and batch
+dbs.batch.hasMany(dbs.link , {as : 'link'});
+dbs.link.belongsTo(dbs.batch , {
+  foreignKey: "batchId",
+  as: "batch",
+});
+
+//relation pembelian and kursus
+dbs.kursus.hasMany(dbs.pembelian , {as : 'pembelian'});
+dbs.pembelian.belongsTo(dbs.kursus , {
+  foreignKey: "kursuId",
+  as: "kursus",
+});
+
+//relational user adn pembelian
+dbs.users.hasMany(dbs.pembelian, { as: "pembelian" });
+dbs.pembelian.belongsTo(dbs.users, {
+  foreignKey: "userId",
+  as: "user",
+});
 
 export default dbs;

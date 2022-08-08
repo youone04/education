@@ -3,7 +3,7 @@ POST http://localhost:8800/api/registrasi
 Content-Type: application/json 
 
 {
-"name": "yadi", "email": "yadi@yadi.com", "password": "123", "confirmPassword": "123"
+"name": "yaya", "email": "yaya@yaya.com", "password": "123", "confirmPassword": "123"
 }
 
 ###

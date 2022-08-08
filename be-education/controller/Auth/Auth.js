@@ -23,7 +23,7 @@ export const Register = async (req, res) => {
       role: 'editor'
       });
   
-      res.status(200).json({ msg: hashPassword });
+      res.status(200).json({ message: hashPassword });
     } catch (error) {
       res.json(error.response && error.response.data.message
         ? error.response.data.message
@@ -40,7 +40,7 @@ export const Register = async (req, res) => {
         include: ["roles"]
       })
       const match = await bcrypt.compare(req.body.password, user[0].password);
-      if (!match) return res.status(400).json({ msg: "Wrong password" });
+      if (!match) return res.status(400).json({ message: "Wrong password" });
       const userId = user[0].id;
       const name = user[0].name;
       const email = user[0].email;
@@ -79,7 +79,7 @@ export const Register = async (req, res) => {
       res.json({accessToken});
     //  res.json({ data: user});
     } catch (error) {
-      res.status(404).json({ msg: "Email tidak ditemukan" });
+      res.status(404).json({ message: "Email tidak ditemukan" });
     }
   };
   

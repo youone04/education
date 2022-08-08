@@ -1,15 +1,24 @@
 import dbs from "../../models/index.js";
 
-export const addLinkKursus = async (req, res, next) => {
+export const addLinkKursus = async (req, res) => {
   try {
-        const {judul , keterangan , link , kursuId} = req.body;
-       await dbs.link.create({
-            judul,
-            keterangan,
-            link,
-            kursuId
-        });
-        res.status(200).json({ msg: 'success' })
+    const { judul, keterangan, link ,kursuId} = req.body;
+    const batch =  await dbs.batch.findAll({
+      where:{
+        kursuId
+      },
+      limit: 1,
+      order: [ [ 'createdAt', 'DESC' ]]
+    });
+    await dbs.link.create({
+      judul,
+      keterangan,
+      link,
+      kursuId,
+      batchId: batch[0].id,
+      batch_pembelian: batch[0].batchColum
+    });
+    res.status(200).json({ message: "success" });
   } catch (error) {
     res
       .status(500)

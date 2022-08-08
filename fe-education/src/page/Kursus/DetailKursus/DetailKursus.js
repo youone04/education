@@ -9,10 +9,10 @@ import BodyDetailKursus from "./BodyDetailKursus";
 function DetailKursus() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const getDataUsers = useSelector((state) => state.datDetailKursus);
+  const getDataKursus = useSelector((state) => state.datDetailKursus);
   const getDataLogin = useSelector((state) => state.login);
   const { token } = getDataLogin.login;
-  const { data, loading, error } = getDataUsers.detailKursus;
+  const { data, loading, error } = getDataKursus.detailKursus;
   useEffect(() => {
     dispatch(getDetailKursus(token, id));
   }, [dispatch]);

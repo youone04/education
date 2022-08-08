@@ -14,6 +14,9 @@ import routerUpload from "./routers/Upload/Upload.js";
 import routerUser from "./routers/Users/Users.js";
 import dbs from "./models/index.js";
 import routerLink from "./routers/Link/Link.js";
+import routerBatch from "./routers/Batch/Batch.js";
+import routerPembelian from "./routers/Pembelian/Pembelian.js";
+import routerBelajar from "./routers/Belajar/Belajar.js";
 
 dotenv.config();
 const app  = express();
@@ -27,7 +30,9 @@ try{
     // await dbs.kursus.sync();
     // await dbs.waktu.sync();
     // await dbs.hari.sync();
-    await dbs.link.sync();
+    // await dbs.batch.sync();
+    // await dbs.link.sync();
+    // await dbs.pembelian.sync();
 }catch(error){
     console.log(error)
 }
@@ -44,12 +49,17 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser())
 app.use(express.json())
 app.use(helmet());
-app.use(morgan('common'));
+app.use(morgan('dev'));
 app.use('/api' , routerAuth);
 app.use('/api', routerKursus);
 app.use('/api', routerUpload);
 app.use('/api', routerUser);
 app.use('/api', routerLink);
+app.use('/api', routerBatch);
+app.use('/api', routerPembelian);
+app.use('/api', routerBelajar);
+
+
 
 
 
