@@ -1,7 +1,25 @@
 ###
-POST http://localhost:8800/registrasi 
+POST http://localhost:8800/api/registrasi 
+Content-Type: application/json 
+
+{
+"name": "yadi", "email": "yadi@yadi.com", "password": "123", "confirmPassword": "123"
+}
+
+###
+POST  http://localhost:8800/api/login
 Content-Type: application/json
 
 {
-"name": "yudi", "email": "yudi@yudi.com", "password": "123", "confirmPassword": "123"
+    "email": "yadi@yadi.com", 
+     "password": "123"
 }
+
+###
+GET http://localhost:8800/token
+
+###
+GET http://localhost:8800/api/roles
+
+###
+GET http://localhost:8800/api/users
