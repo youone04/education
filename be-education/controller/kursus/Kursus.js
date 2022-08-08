@@ -45,7 +45,7 @@ export const inputItemKursus = async(req, res) => {
         where: {
           id: req.params.id,
         },
-        include: ["waktu","hari"],
+        include: ["waktu","hari" ,"link"],
       });
       res.status(200).json(detailKursus)
 
