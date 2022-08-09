@@ -4,6 +4,7 @@ import BatchModels from "./BatchModels.js";
 import HariModels from "./HariModels.js";
 import KursusModels from "./KursusModels.js";
 import LinkKursusModels from "./LinkKursusModels.js";
+import MetodePembayaran from "./MetodePembayaran.js";
 import PembelianModels from "./PembelianModels.js";
 import RolesModels2 from "./RolesModels2.js";
 import UserModels2 from "./UserModels2.js";
@@ -21,6 +22,7 @@ dbs.hari = HariModels(db , Sequelize);
 dbs.link = LinkKursusModels(db , Sequelize);
 dbs.batch = BatchModels(db , Sequelize);
 dbs.pembelian = PembelianModels(db , Sequelize);
+dbs.metodePembayaran = MetodePembayaran(db , Sequelize);
 
 // relational roles and users
 dbs.users.hasMany(dbs.roles, { as: "roles" });
@@ -78,11 +80,18 @@ dbs.pembelian.belongsTo(dbs.kursus , {
   as: "kursus",
 });
 
-//relational user adn pembelian
+//relational user and pembelian
 dbs.users.hasMany(dbs.pembelian, { as: "pembelian" });
 dbs.pembelian.belongsTo(dbs.users, {
   foreignKey: "userId",
   as: "user",
+});
+
+//relational metode pembayaran and pembelian
+dbs.metodePembayaran.hasMany(dbs.pembelian, { as: "pembelian" });
+dbs.pembelian.belongsTo(dbs.metodePembayaran, {
+  foreignKey: "metodePembayaranId",
+  as: "metode_pembayaran",
 });
 
 export default dbs;

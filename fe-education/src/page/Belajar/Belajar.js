@@ -16,7 +16,6 @@ function Belajar() {
     dispatch(getBelajar(id, token));
   }, [dispatch]);
 
-  console.log(data);
 
   return (
     <>
@@ -47,8 +46,8 @@ function Belajar() {
                 className="custome-scroll"
                 style={{ overflow: "auto", height: 500 }}
               >
-                {data.kursus.link.length <= 0? 
-                <h4 className="text-center mt-5" style={{color:'#80808073'}}><i>Silahkan Lakukan Pembayaran</i></h4> 
+                {!data.status? 
+                <h4 className="text-center mt-5" style={{color:'#80808073'}}><i>Pembayaran Belum di Konfirmasi Admin</i></h4> 
                 :
                 data.kursus.link.map((l, i) => {
                   return (

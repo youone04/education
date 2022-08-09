@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ModalPembayaran from "./ModalPembayaran";
 import { getToken } from "../../redux/actions/actionLogin";
+import { getMetodePembayaran } from "../../redux/actions/actionMetodePembayaran/actionMetodePembayaran";
 
 export default function Home() {
 
@@ -12,11 +13,14 @@ export default function Home() {
   const getKursusPublicData = useSelector((state) => state.dataKursusPublic);
   const { data, loading, error } = getKursusPublicData.kursusPublic;
   const getDataLogin = useSelector((state) => state.login);
+  const getMetodePem = useSelector((state) => state.dataMetodePembayaran);
+  const { data : dataMetodePembayaran, loading: loadingMetodePem , error : errorMetodePem } = getMetodePem.metodePembayaran;
   const { token } = getDataLogin.login;
 
   useEffect(() => {
     dispatch(getKursusPublic());
     dispatch(getToken());
+    dispatch(getMetodePembayaran());
   }, [dispatch]);
 
   const [modalShow, setModalShow] = useState(false);
@@ -31,12 +35,13 @@ export default function Home() {
     return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
+
   return (
     <>
-      {loading ? (
+      {loading || loadingMetodePem ? (
         <p>loading</p>
-      ) : error ? (
-        <p>{error}</p>
+      ) : error || errorMetodePem ? (
+        <p>{error || errorMetodePem}</p>
       ) : (
         <>
           <div>Home</div>
@@ -44,11 +49,13 @@ export default function Home() {
             token={token}
             jadwal={jadwal}
             show={modalShow}
+            metode ={dataMetodePembayaran}
             onHide={() => setModalShow(false)}
           />
+          <div className="d-flex">
           {data.map((k, i) => {
             return (
-              <Card key={i} style={{ width: "18rem" }}>
+              <Card className="m-2" key={i} style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={k.gambar} />
                 <Card.Body>
                   <Card.Title>{k.judul}</Card.Title>
@@ -57,7 +64,7 @@ export default function Home() {
                   <>
                     <Button
                       variant="primary"
-                      onClick={() => handleShowButton({waktu : k.waktu , hari: k.hari , id:k.id})}
+                      onClick={() => handleShowButton({harga : numberWithCommas(k.harga) ,  id:k.id , judul : k.judul})}
                     >
                       Beli Kursus
                     </Button>
@@ -73,8 +80,10 @@ export default function Home() {
                   </a>
                 </Card.Body>
               </Card>
+              
             );
           })}
+          </div>
         </>
       )}
     </>

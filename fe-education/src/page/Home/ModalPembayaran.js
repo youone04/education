@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -7,9 +7,12 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 
 function ModalPembayaran(props) {
   const navigate = useNavigate();
+  const [metodeBayar, setMetodeBayar] = useState(props.metode[0].id);
   const {
     register,
     handleSubmit,
@@ -18,14 +21,16 @@ function ModalPembayaran(props) {
   } = useForm();
 
   const handleBeli = async (data) => {
-   
     try {
       props.onHide();
-      if (!props.token) return swal("warning", "Silahkan Login", "warning");
+      if (!props.token) return swal("warning", "Pembelian Gagal ,Silahkan Login", "warning");
+      const role =  jwtDecode(props.token);
+      const cekRole =  role.role.filter((r) => r === 'user');
+      if(cekRole.length <= 0) return swal("warning", "Pembelian Gagal ,Silahkan login dengan akun user", "warning");
+      return
       const { userId } = jwtDecode(props.token);
       const response = await axios.post(
-        `${process.env.REACT_APP_END_POINT}/pembelian/${userId}/${props.jadwal.id}`,data
-      );
+        `${process.env.REACT_APP_END_POINT}/pembelian/${userId}/${props.jadwal.id}`);
 
       if (response.status === 200) {
         swal("success", "Pembelian Berhasil", "success");
@@ -41,6 +46,11 @@ function ModalPembayaran(props) {
       );
     }
   };
+
+  const handleSelect = (key) => {
+    setMetodeBayar(key);
+  };
+
   return (
     <Modal
       {...props}
@@ -50,33 +60,49 @@ function ModalPembayaran(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Pilih Jadwal
+          Pembelian Kursus
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Waktu</h4>
-        <Form.Select {...register("jadwal_waktu")} aria-label="Default select example">
-          <option value="">Pilih waktu</option>
-          {props.jadwal?.waktu?.map((w, i) => {
-            return (
-              <option key={i} value={w.waktu}>
-                {w.waktu} WIB
-              </option>
-            );
-          })}
-        </Form.Select>
-        <hr />
-        <h4>Hari</h4>
-        <Form.Select {...register("jadwal_hari")} aria-label="Default select example">
-          <option>Pilih hari</option>
-          {props.jadwal?.hari?.map((h, i) => {
-            return (
-              <option key={i} value={h.hari}>
-                {h.hari}
-              </option>
-            );
-          })}
-        </Form.Select>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Tabs
+            defaultActiveKey="1"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+            onSelect={handleSelect}
+          >
+            {props.metode.map((m, i) => {
+              return (
+                <Tab eventKey={m.id} title={m.nama_metode}>
+                  <b>
+                    <i> No Pembayaran : <u>764734577</u></i>
+                  </b>
+                </Tab>
+              );
+            })}
+          </Tabs>
+          <hr />
+          <table>
+            <tr>
+              <td>Harga </td>
+              <td>
+                : <b>Rp. {props.jadwal.harga}</b>
+              </td>
+            </tr>
+            <tr>
+              <td>Nama kursus</td>
+              <td>
+                : <b>{props.jadwal.judul}</b>
+              </td>
+            </tr>
+          </table>
+          <hr />
+          <Form.Label>Bukti Transfer</Form.Label>
+          <Form.Control type="file" {...register("bukti_bayar")} />
+          <i className="text-success">
+            Pastikan nominal sesuai dengan harga yang ada di atas
+          </i>
+        </Form.Group>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={handleSubmit(handleBeli)}>SIMPAN</Button>

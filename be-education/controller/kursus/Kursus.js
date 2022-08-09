@@ -2,10 +2,15 @@ import dbs from "../../models/index.js";
 
 export const inputItemKursus = async(req, res) => {
     try{
-      const {judul , harga  , deskripsi , userId , syllabus , 	gambar , waktu , hari} =await req.body;
+      const {judul , harga  , deskripsi , userId , syllabus ,gambar , waktu , hari} =await req.body;
       const kursus = await dbs.kursus.create({
         judul,gambar,harga,deskripsi,syllabus,userId,
         });
+
+      await dbs.batch.create({
+        batchColum : "B1",
+        kursuId :kursus.dataValues.id
+      })
 
       for(let i=0; i<hari.length; i++){
         await dbs.hari.create({

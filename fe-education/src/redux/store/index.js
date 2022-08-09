@@ -5,7 +5,9 @@ import { getDataDetailKursus } from '../reducers/ReducersDetailKursus/ReducersDe
 import { getDataKursus } from '../reducers/ReducersKursus/ReducersKursus';
 import { getDataKursusPublic } from '../reducers/ReducersKursusPublic/ReducersKursusPublic';
 import { getDataLogin } from '../reducers/ReducersLogin';
+import { getDataMetodePembayaran } from '../reducers/reducersMetodePembayaran/reducersMetodePembayaran';
 import { getDataUsers } from '../reducers/ReducersUsers';
+
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +17,7 @@ export const store = configureStore({
     datDetailKursus: getDataDetailKursus,
     dataKursusPublic : getDataKursusPublic,
     dataKursusBeli : getDataKursusBeli,
-    dataBelajar : getDataBelajar
+    dataBelajar : getDataBelajar,
+    dataMetodePembayaran: getDataMetodePembayaran
   },
 })

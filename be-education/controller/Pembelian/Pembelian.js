@@ -28,7 +28,6 @@ export const getPembelian = async (req, res) => {
 export const postPembelian  = async (req, res) => {
   try{
     const {userId ,kursuId} = req.params;
-    const {jadwal_hari , jadwal_waktu} = req.body;
     const batch =  await dbs.batch.findAll({
       where:{
         kursuId
@@ -40,8 +39,6 @@ export const postPembelian  = async (req, res) => {
       kursuId,
       userId,
       batch_pembelian: batch[0].batchColum,
-      jadwal_waktu,
-      jadwal_hari
     });
     res.status(200).json({ message: "success" });
 

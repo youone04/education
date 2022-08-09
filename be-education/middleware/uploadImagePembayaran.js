@@ -2,10 +2,10 @@ import multer from 'multer';
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/images');
+        cb(null, 'public/pembayaran');
     },
     filename: function (req, file, cb) {
-        cb(null, 'Eduction' + "--" + file.originalname);
+        cb(null, 'pembayaran' + "--" + file.originalname);
     }
 });  
 
@@ -18,5 +18,5 @@ const fileFilter = (req, file, cb) => {
 
 };
 const maxSize = 2014288; //2mb
-let uploadImages = multer({ storage: storage, fileFilter: fileFilter , limits: {fileSize : maxSize} }).single("gambar");
-export default uploadImages;
+let uploadImagesPembayaran = multer({ storage: storage, fileFilter: fileFilter , limits: {fileSize : maxSize} }).single("gambar");
+export default uploadImagesPembayaran;
