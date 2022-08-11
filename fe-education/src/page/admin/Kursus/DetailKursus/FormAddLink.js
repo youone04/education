@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetailKursus } from "../../../redux/actions/actionDetailKursus/actionDetailKursus";
+import { getDetailKursus } from "../../../../redux/actions/actionDetailKursus/actionDetailKursus";
 function FormAddLink(props) {
   const dispatch = useDispatch();
   const getDataLogin = useSelector((state) => state.login);

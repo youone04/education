@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import Footer from "../../../components/Admin/Footer";
-import Header from "../../../components/Admin/Header";
-import Menu from "../../../components/Admin/Menu";
-import { getDetailKursus } from "../../../redux/actions/actionDetailKursus/actionDetailKursus";
+import Footer from "../../../../components/Admin/Footer";
+import Header from "../../../../components/Admin/Header";
+import Menu from "../../../../components/Admin/Menu";
+import { getDetailKursus } from "../../../../redux/actions/actionDetailKursus/actionDetailKursus";
 import BodyDetailKursus from "./BodyDetailKursus";
 function DetailKursus() {
   const { id } = useParams();

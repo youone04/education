@@ -60,9 +60,9 @@ const Menu = () => {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/manage-anggota" className="nav-link">
+                    <Link to="/pembelian-kursus" className="nav-link">
                       <i  style={{color:'white'}} className="far fa-circle nav-icon mr-1" />
-                      <p  style={{color:'white'}}>Anggota</p>
+                      <p  style={{color:'white'}}>Pembelian kursus</p>
                     </Link>
                   </li>
                   <li className="nav-item">

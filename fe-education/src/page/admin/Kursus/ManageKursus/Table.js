@@ -1,4 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
+import numberWithCommas from "../../../../func/numberWithCommas";
+
 const Table = (props) => {
   const navigate = useNavigate();
 
@@ -87,7 +89,7 @@ const Table = (props) => {
                           <tr key={i}>
                             <td>{i=i+1}</td>
                             <td>{d.judul}</td>
-                            <td>{d.harga}</td>
+                            <td>Rp. {numberWithCommas(d.harga)}</td>
                             <td>
                               <Link style={{textDecoration:'none'}} to={`/detail-kursus/${d.id}`}>Detail kursus</Link>
                             </td>

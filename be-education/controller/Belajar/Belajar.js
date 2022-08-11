@@ -15,11 +15,21 @@ export const getBelajar = async (req, res) => {
             {
               model: dbs.link,
               as: "link",
-            }
+            },
+            {
+              model: dbs.hari,
+              as: "hari",
+            },
+            {
+              model: dbs.waktu,
+              as: "waktu",
+            },
           ],
         },
       ],
     });
+
+    // include: ["waktu","hari" ,"link","batch"],
 
     if (belajar && belajar.status) {
       const dataHasil = belajar.kursus.link.filter(li => li.batch_pembelian === belajar.batch_pembelian);

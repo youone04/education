@@ -1,11 +1,12 @@
 import React, { useEffect , useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getKursusPublic } from "../../redux/actions/actionKursusPublic/actionKursusPublic";
+import { getKursusPublic } from "../../../redux/actions/actionKursusPublic/actionKursusPublic";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ModalPembayaran from "./ModalPembayaran";
-import { getToken } from "../../redux/actions/actionLogin";
-import { getMetodePembayaran } from "../../redux/actions/actionMetodePembayaran/actionMetodePembayaran";
+import { getToken } from "../../../redux/actions/actionLogin";
+import { getMetodePembayaran } from "../../../redux/actions/actionMetodePembayaran/actionMetodePembayaran";
+import numberWithCommas from "../../../func/numberWithCommas";
 
 export default function Home() {
 
@@ -30,11 +31,6 @@ export default function Home() {
     setModalShow(true);
     setDataJadwal(data)
   };
-
-  const numberWithCommas = (x) => {
-    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
-
 
   return (
     <>
@@ -69,8 +65,6 @@ export default function Home() {
                       Beli Kursus
                     </Button>
                   </>
-
-                  {/* <Button variant="primary">Beli Kursus</Button> */}
                   <a
                     className="text-decoration-none btn -btn-success ml-1"
                     href={k.syllabus}

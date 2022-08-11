@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../../components/Admin/Footer";
-import Header from "../../../components/Admin/Header";
-import Menu from "../../../components/Admin/Menu";
+import Footer from "../../../../components/Admin/Footer";
+import Header from "../../../../components/Admin/Header";
+import Menu from "../../../../components/Admin/Menu";
 import FormKursus from "./FormKursus";
 import SectionHeader from "./SectionHeader";
 import { useForm } from "react-hook-form";

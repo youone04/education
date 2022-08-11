@@ -3,13 +3,16 @@
     width: 15px;
   }
   
-  .custome-scroll::-webkit-scrollbar-track {
+.custome-scroll::-webkit-scrollbar-track {
     background-color: transparent;
   }
   
-  .custome-scroll::-webkit-scrollbar-thumb {
+.custome-scroll::-webkit-scrollbar-thumb {
     background-color: #d6dee1;
     border-radius: 20px;
     border: 6px solid transparent;
     background-clip: content-box;
   }
+.img-pembayaran {
+  width: 15%
+}

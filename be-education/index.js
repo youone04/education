@@ -34,7 +34,7 @@ try {
 //   await dbs.batch.sync();
 //   await dbs.link.sync();
 //   await dbs.metodePembayaran.sync();
-//   await dbs.pembelian.sync();
+  // await dbs.pembelian.sync();
 } catch (error) {
   console.log(error);
 }

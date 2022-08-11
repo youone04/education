@@ -6,6 +6,9 @@ export default (sequelize, DataTypes) => {
         batch_pembelian: {
             type: DataTypes.STRING
         },
+        bukti_pembayaran : {
+            type: DataTypes.STRING
+        }
     },
     {
         freezeTableName: true

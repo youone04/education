@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { getUsers } from "../../redux/actions/actionUsers";
+import { getUsers } from "../../../redux/actions/actionUsers";
 import { useSelector, useDispatch } from "react-redux";
-import Header from "../../components/Admin/Header";
-import Menu from "../../components/Admin/Menu";
-import Footer from "../../components/Admin/Footer";
+import Header from "../../../components/Admin/Header";
+import Menu from "../../../components/Admin/Menu";
+import Footer from "../../../components/Admin/Footer";
 
 function Dashboard() {
   const dispatch = useDispatch();

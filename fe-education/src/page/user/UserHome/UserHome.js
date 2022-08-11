@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getKursusBeli } from "../../redux/actions/actionKursusBeli/actionKursusBeli";
+import { getKursusBeli } from "../../../redux/actions/actionKursusBeli/actionKursusBeli";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";

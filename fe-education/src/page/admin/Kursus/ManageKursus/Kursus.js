@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Footer from "../../../components/Admin/Footer";
-import Header from "../../../components/Admin/Header";
-import Menu from "../../../components/Admin/Menu";
-import { getKursus } from "../../../redux/actions/actionKursus/actionKursus";
+import Footer from "../../../../components/Admin/Footer";
+import Header from "../../../../components/Admin/Header";
+import Menu from "../../../../components/Admin/Menu";
+import { getKursus } from "../../../../redux/actions/actionKursus/actionKursus";
 import Table from "./Table";
 
 function Kursus() {
