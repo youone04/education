@@ -171,6 +171,11 @@ export const jumlahPendapatanPerPengajar = async (req, res) => {
   try {
     const pendapatan = await dbs.pembelian.findAll({
       attributes: ["id", "batch_pembelian", "status"],
+    //   attributes: [
+    //     // include the summed value here
+    //     "id", "batch_pembelian", "status",
+    //     [Sequelize.fn('SUM', Sequelize.col('kursus.harga')), 'totalHarga']
+    //  ],
       where: {
         batch_pembelian: req.params.batch,
         status: true,
@@ -188,9 +193,6 @@ export const jumlahPendapatanPerPengajar = async (req, res) => {
               model: dbs.users,
               required: true,
               as: "user",
-              // where: {
-              //   id: req.params.userId,
-              // },
             },
           ],
           

@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 
 function SectionHeader() {
-  console.log('sectio header')
   return (
     <section className="content-header">
       <div className="container-fluid">

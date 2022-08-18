@@ -16,6 +16,7 @@ function Belajar() {
     dispatch(getBelajar(id, token));
   }, [dispatch]);
 
+
   return (
     <>
       {loading ? (
@@ -75,7 +76,7 @@ function Belajar() {
               </ListGroup>
             </Card>
 
-            <Card className="ml-1" style={{ width: "12rem" }}>
+            <Card className="ml-1" style={{ width: "18rem" }}>
               <ListGroup.Item>
                 <h4 className="ml-2">Waktu</h4>
               </ListGroup.Item>
@@ -84,22 +85,8 @@ function Belajar() {
                 className="custome-scroll"
                 style={{ overflow: "auto", height: 500 }}
               >
-                {data.kursus.waktu.map((w, i) => {
-                  return <ListGroup.Item key={i}>{w.waktu} WIB</ListGroup.Item>;
-                })}
-              </ListGroup>
-            </Card>
-            <Card className="ml-1" style={{ width: "12rem" }}>
-              <ListGroup.Item>
-                <h4 className="ml-2">Hari</h4>
-              </ListGroup.Item>
-              <ListGroup
-                variant="flush"
-                className="custome-scroll"
-                style={{ overflow: "auto", height: 500 }}
-              >
-                {data.kursus.hari.map((h, i) => {
-                  return <ListGroup.Item key={i}>{h.hari}</ListGroup.Item>;
+                {data.kursus.jadwal.map((j, i) => {
+                  return <ListGroup.Item key={i}>{j.hari} {" "} ({j.waktu}WIB)</ListGroup.Item>;
                 })}
               </ListGroup>
             </Card>

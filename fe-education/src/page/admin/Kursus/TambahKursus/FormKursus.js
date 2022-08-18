@@ -3,40 +3,22 @@ import { useNavigate } from "react-router-dom";
 function FormKursus(props) {
   const navigate = useNavigate();
 
-  // form waktu
-  const addFormhari = () => {
-    props.setHari([...props.varHari, { hari: "" }]);
+  // form jadwal
+  const addFormJadwal = () => {
+    props.setJadwal([...props.varJadwal, { hari: "", waktu:"" }]);
   };
 
-  const removeFormhari = (i) => {
-    const newFormValue = [...props.varHari];
+  const removeFormJadwal = (i) => {
+    const newFormValue = [...props.varJadwal];
     newFormValue.splice(i, 1);
-    props.setHari(newFormValue);
+    props.setJadwal(newFormValue);
   };
 
-  const handleChangeHari = (event) => {
-    const updateHari = [...props.varHari];
-    updateHari[event.target.dataset.id][event.target.className.split(" ")[0]] =
+  const handleChangeJadwal = (event) => {
+    const updateJadwal = [...props.varJadwal];
+    updateJadwal[event.target.dataset.id][event.target.className.split(" ")[0]] =
       event.target.value;
-    props.setHari(updateHari);
-  };
-
-  // form Hari
-  const addFormWaktu = () => {
-    props.setWaktu([...props.varWaktu, { waktu: "" }]);
-  };
-
-  const removeFormWaktu = (i) => {
-    const newFormValue = [...props.varWaktu];
-    newFormValue.splice(i, 1);
-    props.setWaktu(newFormValue);
-  };
-
-  const handleChangeWaktu = (event) => {
-    const updateWaktu = [...props.varWaktu];
-    updateWaktu[event.target.dataset.id][event.target.className.split(" ")[0]] =
-      event.target.value;
-    props.setWaktu(updateWaktu);
+    props.setJadwal(updateJadwal);
   };
 
   return (
@@ -90,13 +72,16 @@ function FormKursus(props) {
                     ></textarea>
                   </div>
 
-                  {props.varHari.map((d, i) => {
+                  {props.varJadwal.map((d, i) => {
                     const hariNama = `hari-${i}`;
+                    const waktuNama = `waktu-${i}`
+
                     return (
-                      <div key={i} className="form-group">
+                      <div key={i}>
+                      <div  className="form-group">
                         <label>Hari Kursus</label>
                         <select
-                          onChange={handleChangeHari}
+                          onChange={handleChangeJadwal}
                           multiple
                           data-id={i}
                           className="hari form-control"
@@ -107,32 +92,9 @@ function FormKursus(props) {
                           <option value={"sabtu"}>sabtu</option>
                           <option value={"minggu"}>minggu</option>
                         </select>
-                        <button
-                          type="button"
-                          className="bg-success rounded mt-1"
-                          onClick={addFormhari}
-                        >
-                          +
-                        </button>
-                        {i ? (
-                          <button
-                            type="button"
-                            className="bg-danger rounded m-1"
-                            onClick={removeFormhari}
-                          >
-                            -
-                          </button>
-                        ) : (
-                          ""
-                        )}
                       </div>
-                    );
-                  })}
 
-                  {props.varWaktu.map((d, i) => {
-                    const waktuNama = `waktu-${i}`;
-                    return (
-                      <div key={i} className="form-group">
+                      <div  className="form-group">
                         <label>Jam Kursus</label>
                         <select
                           multiple
@@ -140,7 +102,7 @@ function FormKursus(props) {
                           className="waktu form-control"
                           name={waktuNama}
                           id={waktuNama}
-                          onChange={handleChangeWaktu}
+                          onChange={handleChangeJadwal}
                         >
                           <option value={"19:00 - 21:00"}>
                             19:00 - 21:00 WIB
@@ -155,7 +117,7 @@ function FormKursus(props) {
                         <button
                           type="button"
                           className="bg-success rounded mt-1"
-                          onClick={addFormWaktu}
+                          onClick={addFormJadwal}
                         >
                           +
                         </button>
@@ -163,7 +125,7 @@ function FormKursus(props) {
                           <button
                             type="button"
                             className="bg-danger rounded m-1"
-                            onClick={removeFormWaktu}
+                            onClick={removeFormJadwal}
                           >
                             -
                           </button>
@@ -171,7 +133,9 @@ function FormKursus(props) {
                           ""
                         )}
                       </div>
+                      </div>
                     );
+                    
                   })}
 
                   <div className="form-group">

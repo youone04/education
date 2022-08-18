@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import BatchModels from "./BatchModels.js";
 import HariModels from "./HariModels.js";
+import JadwalModels from "./JadwalModels.js";
 import KursusModels from "./KursusModels.js";
 import LinkKursusModels from "./LinkKursusModels.js";
 import MetodePembayaran from "./MetodePembayaran.js";
@@ -17,8 +18,7 @@ dbs.sequelize = db;
 dbs.roles =  RolesModels2(db, Sequelize);
 dbs.users =  UserModels2(db, Sequelize);
 dbs.kursus = KursusModels(db , Sequelize);
-dbs.waktu = WaktuModels(db , Sequelize);
-dbs.hari = HariModels(db , Sequelize);
+dbs.jadwal = JadwalModels(db , Sequelize);
 dbs.link = LinkKursusModels(db , Sequelize);
 dbs.batch = BatchModels(db , Sequelize);
 dbs.pembelian = PembelianModels(db , Sequelize);
@@ -38,19 +38,19 @@ dbs.kursus.belongsTo(dbs.users, {
   as: "user",
 });
 
-//relational waktu and kursus
-dbs.kursus.hasMany(dbs.waktu, { as: "waktu" });
-dbs.waktu.belongsTo(dbs.kursus, {
+//relational jadwal and kursus
+dbs.kursus.hasMany(dbs.jadwal, { as: "jadwal" });
+dbs.jadwal.belongsTo(dbs.kursus, {
   foreignKey: "kursuId",
   as: "kursus",
 });
 
 //relational hari and kursus
-dbs.kursus.hasMany(dbs.hari, {as: "hari"});
-dbs.hari.belongsTo(dbs.kursus , {
-  foreignKey: "kursuId",
-  as: "kursus"
-});
+// dbs.kursus.hasMany(dbs.hari, {as: "hari"});
+// dbs.hari.belongsTo(dbs.kursus , {
+//   foreignKey: "kursuId",
+//   as: "kursus"
+// });
 
 //relational link and kursus
 dbs.kursus.hasMany(dbs.link , {as : 'link'});

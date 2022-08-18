@@ -6,7 +6,6 @@ const Header = () => {
       <nav className="main-header navbar navbar-expand navbar-white navbar-light">
         <ul className="navbar-nav">
           <li className="nav-item">
-          {console.log('ok')}
             <a
               className="nav-link"
               data-widget="pushmenu"

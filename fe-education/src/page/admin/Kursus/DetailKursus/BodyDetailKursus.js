@@ -80,20 +80,19 @@ function BodyDetailKursus(props) {
                       </div>
                       <div className="post clearfix">
                         <span className="username">
-                          <h3>Waktu Kursus</h3>
+                          <h3>Jadwal Kursus</h3>
                         </span>
-                        {props.detailKursus.waktu.map((w, i) => {
-                          return <h6 key={i}>{w.waktu} WIB</h6>;
+                        <ul>
+                        {props.detailKursus.jadwal.map((j, i) => {
+                          return (
+                            <li>
+                                {j.hari}{" "}({j.waktu} WIB)
+                            </li>
+                          );
                         })}
+                        </ul>
                       </div>
-                      <div className="post">
-                        <span className="username">
-                          <h3>Hari Kursus</h3>
-                        </span>
-                        {props.detailKursus.hari.map((h, i) => {
-                          return <h6 key={i}>{h.hari}</h6>;
-                        })}
-                      </div>
+                      
                       <div className="post">
                         <span className="username">
                           <h3>Syllabus Kursus</h3>

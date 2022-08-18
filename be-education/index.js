@@ -18,6 +18,7 @@ import routerBatch from "./routers/Batch/Batch.js";
 import routerPembelian from "./routers/Pembelian/Pembelian.js";
 import routerBelajar from "./routers/Belajar/Belajar.js";
 import routerMetodePembayaran from "./routers/MetodePembayaran/MetodePembayaran.js";
+import routerSertfikat from "./routers/Sertifikat/Sertifikat.js";
 
 dotenv.config();
 const app = express();
@@ -26,14 +27,15 @@ const PORT = process.env.PORT || 8800;
 try {
   await db.authenticate();
   console.log("Databse Connected....");
-//   await dbs.users.sync();
-//   await dbs.roles.sync();
-//   await dbs.kursus.sync();
-//   await dbs.waktu.sync();
-//   await dbs.hari.sync();
-//   await dbs.batch.sync();
-//   await dbs.link.sync();
-//   await dbs.metodePembayaran.sync();
+  // await dbs.users.sync();
+  // await dbs.roles.sync();
+  // await dbs.kursus.sync();
+  // await dbs.waktu.sync();
+  // await dbs.hari.sync();
+  // await dbs.jadwal.sync();
+  // await dbs.batch.sync();
+  // await dbs.link.sync();
+  // await dbs.metodePembayaran.sync();
   // await dbs.pembelian.sync();
 } catch (error) {
   console.log(error);
@@ -68,6 +70,8 @@ app.use("/api", routerBatch);
 app.use("/api", routerPembelian);
 app.use("/api", routerBelajar);
 app.use("/api", routerMetodePembayaran);
+app.use("/api", routerSertfikat);
+
 
 app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}`);

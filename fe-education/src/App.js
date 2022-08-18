@@ -13,6 +13,10 @@ import DetailKursus from "./page/admin/Kursus/DetailKursus/DetailKursus";
 import UserHome from "./page/user/UserHome/UserHome";
 import Belajar from "./page/user/Belajar/Belajar";
 import PembelianKursus from "./page/admin/PembelianKursus/PembelianKursus";
+import PendapatanBatch from "./page/admin/PendapatanBatch/PendapatanBatch";
+import PendapatanPengajar from "./page/admin/PendapatanPengajar/PendapatanPengajar";
+import KursusDetail from "./page/public/KursusDetail/KursusDetail";
+import Sertifikat from "./page/user/Sertifikat/Sertifikat";
 
 const ROLES = {
   Root: "root",
@@ -28,8 +32,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           {/* public route */}
           <Route path="/" element={<Home />} />
+          <Route path="/srtf/:userId/:id" element={<Sertifikat />} />
+          <Route path="/kursus/:id" element={<KursusDetail />}/>
           <Route element={<PublicRoute />}>
-            <Route path="/login-admin" element={<Login />} />
+            <Route path="/login" element={<Login />} />
           </Route>
 
           {/* private route */}
@@ -45,6 +51,8 @@ function App() {
             <Route path="/tambah-kursus" element={<TambahKursus />} />
             <Route path="/detail-kursus/:id" element={<DetailKursus />} />
             <Route path="/pembelian-kursus" element={<PembelianKursus/>}/>
+            <Route path="/pendapatan-batch" element={<PendapatanBatch/>}/>
+            <Route path="/pendapatan-pengajar/:id" element={<PendapatanPengajar/>}/>
           </Route>
 
           <Route

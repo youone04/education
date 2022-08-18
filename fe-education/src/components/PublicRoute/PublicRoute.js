@@ -1,7 +1,7 @@
 import React from "react";
-import { Outlet , Navigate , useLocation} from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector, useDispatch  } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../../redux/actions/actionLogin";
 
 export default function PublicRoute() {
@@ -14,13 +14,16 @@ export default function PublicRoute() {
     dispatch(getToken());
   }, [dispatch]);
 
-
   return loading ? (
     <p>loading</p>
   ) : error ? (
     <Outlet />
   ) : token ? (
-    <Navigate to="/dashboard" state={{ from: location }} replace />
+    role?.find((r) => r === "user") ? (
+      <Navigate to="/user" state={{ from: location }} replace />
+    ) : (
+      <Navigate to="/dashboard" state={{ from: location }} replace />
+    )
   ) : (
     <Outlet />
   );

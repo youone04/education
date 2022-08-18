@@ -1,0 +1,14 @@
+1. fitur request kursus user ke pengajar
+- jenis kursus
+- private , group
+- pengajuan harga
+
+2. page public
+-Home
+-About
+-Kontak
+
+3. page user
+-belajar
+-list kursus
+-request kursus

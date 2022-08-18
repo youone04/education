@@ -17,19 +17,13 @@ export const getBelajar = async (req, res) => {
               as: "link",
             },
             {
-              model: dbs.hari,
-              as: "hari",
-            },
-            {
-              model: dbs.waktu,
-              as: "waktu",
+              model: dbs.jadwal,
+              as: "jadwal",
             },
           ],
         },
       ],
     });
-
-    // include: ["waktu","hari" ,"link","batch"],
 
     if (belajar && belajar.status) {
       const dataHasil = belajar.kursus.link.filter(li => li.batch_pembelian === belajar.batch_pembelian);
@@ -42,6 +36,7 @@ export const getBelajar = async (req, res) => {
       belajar? belajar['kursus']['dataValues']['link'] = [] :null;
       res.status(200).json(belajar);
     }
+    // res.status(200).json(belajar);
   } catch (error) {
     res
       .status(500)

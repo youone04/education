@@ -15,7 +15,7 @@ import ModalImage from "react-modal-image";
 function ModalPembayaran(props) {
   const text = useRef(null);
   const navigate = useNavigate();
-  const [metodeBayar, setMetodeBayar] = useState(props.metode[0].id);
+  const [metodeBayar, setMetodeBayar] = useState(props.metode[0]?props.metode[0].id:1);
   const [show, setShow] = useState(false);
   const target = useRef(null);
   const [dataGambar, setDataGambar] = useState(null);

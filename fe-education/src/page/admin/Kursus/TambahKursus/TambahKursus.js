@@ -24,24 +24,18 @@ function TambahKursus() {
   const [previewGambar, setPreviewGambar] = useState(
     "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg"
   );
-  // multiple Hari
-  const [varHari, setHari] = useState([
-    {
-      hari: ""
-    },
-  ]);
-
-  // multiple waktu
-  const [varWaktu, setWaktu] = useState([
-    {
-      waktu: ""
-    },
+  // multiple jadwal
+  const [varJadwal, setJadwal] = useState([
+     {
+        hari: "",
+        waktu: ""
+     }
+     
   ]);
 
   const onSubmit = async (data) => {
-    const cekHari = varHari.filter(d => d.hari != "");
-    const cekWaktu = varWaktu.filter(d => d.waktu != "");
-    if(cekHari.length === 0 || cekWaktu.length === 0) return SweetAlert("Failed", "Form Hari atau Waktu Tidak Boleh Kosong!", "warning");
+    const cekJadwal = varJadwal.filter(d => d.waktu != "" || d.hari != "");
+    if(cekJadwal.length === 0 ) return SweetAlert("Failed", "Form Jadwal Tidak Boleh Kosong!", "warning");
     // cek file empty?
     if (!data.syllabus[0] || !dataGambar)
       return SweetAlert("Failed", "Semua Data File Harus di Input!", "warning");
@@ -112,8 +106,7 @@ function TambahKursus() {
         ...data,
         gambar,
         userId,
-        hari: cekHari,
-        waktu: cekWaktu
+        jadwal: cekJadwal,
       };
       const hasil = await axios.post(`${process.env.REACT_APP_END_POINT}/kursus`, dataSend);
       if(hasil.status === 200) return   SweetAlert("success", "Success", "success");
@@ -149,10 +142,8 @@ function TambahKursus() {
           setDataGambar={setDataGambar}
           previewGambar={previewGambar}
           errors={errors}
-          setHari={setHari}
-          varHari={varHari}
-          varWaktu={varWaktu}
-          setWaktu={setWaktu}
+          setJadwal ={setJadwal}
+          varJadwal ={varJadwal}
         />
       </div>
       <Footer />
