@@ -65,7 +65,7 @@ export default class Export extends Component {
                       <div className="col-2">
                         {
                           this.props?.data?
-                          <QRCode value={`http://localhost:3000/srtf/${this.props.userId}/${this.props.id}`} size={60} />
+                          <QRCode value={`${process.env.REACT_APP_CLIENT}/srtf/${this.props.userId}/${this.props.id}`} size={60} />
                           :''
                         }
 

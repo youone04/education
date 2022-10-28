@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getKursusBeli } from "../../../redux/actions/actionKursusBeli/actionKursusBeli";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import NavbarComp from "../../../components/NavbarComp/NavbarComp";
+import Footer from "../../../components/Footer/Footer";
 
 function UserHome() {
   const dispatch = useDispatch();
@@ -13,34 +14,41 @@ function UserHome() {
   const { data, loading, error } = getKursusBeliData.kursusBeli;
   useEffect(() => {
     dispatch(getKursusBeli(token));
-  }, [dispatch]);
+  }, [dispatch ,token]);
 
   return (
-    <>
-      <div>UserHome</div>
+    <div>
       {loading ? (
         <p>loading</p>
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <div className="col-12 d-flex flex-row">
+        <>
+        <NavbarComp/>
+        <div className="container">
+          <h3 className="text-center mt-5">List Kursus</h3>
+          <hr/>
+        <div className="d-flex mt-3 row">
           {data.map((d, i) => {
             return (
-              <Card className="m-1" key={i} style={{ width: "18rem" }}>
+              <Card className="m-1 card-hover col-sm-12 col-lg-4 mt-3" key={i}>
                 <Card.Img variant="top" src={d.kursus.gambar} />
                 <Card.Body>
                   <Card.Title>{d.kursus.judul}</Card.Title>
-                  <Card.Text>{d.kursus.deskripsi}</Card.Text>
+                  <Card.Text>{d.kursus.deskripsi.slice(0, 80)}</Card.Text>
                   <a
-                    className="text-decoration-none btn btn-successs ml-1"
+                  style={{backgroundColor:'gray'}}
+                    className="text-decoration-none btn ml-1 text-white"
                     href={d.kursus.syllabus}
                     target="_blank"
+                    rel="noreferrer"
+                    
                   >
                     Lihat Syllabus
                   </a>
 
                   <Link
-                    className="text-decoration-none btn btn-success ml-1"
+                    className="text-decoration-none btn btn-dark ml-1"
                     to={`/belajar/${d.id}`}
                   >
                     Mulai Belajar
@@ -48,11 +56,17 @@ function UserHome() {
                 </Card.Body>
               </Card>
             );
-          })}
+          })
+          }
         </div>
-      )}
-    </>
+        </div>
+        <Footer/>
+        </>
+      )
+      }
+    </div>
   );
+
 }
 
 export default UserHome;

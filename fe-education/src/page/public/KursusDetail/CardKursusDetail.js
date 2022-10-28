@@ -13,13 +13,16 @@ function CardKursusDetail(props) {
         {Array.from({ length: 1 }).map((_, idx) => (
           <Col key={idx}>
             <Card>
-              <div className="d-flex col-12">
+              <div className="d-flex col-12 row">
+                <div className="col-sm-12 col-lg-6">
                 <Card.Img
-                  style={{ width: "40%", margin: 8 }}
+                  style={{ width: "100%", margin: 8 }}
                   variant="top"
                   src={props.data.gambar}
                 />
-                <Card.Body>
+                </div>
+               <div className="col-lg-6 col-sm-12">
+               <Card.Body>
                   <Card.Title>{props.data.judul}</Card.Title>
                   <Card.Text>
                     <i>{props.data.deskripsi}</i>
@@ -38,10 +41,10 @@ function CardKursusDetail(props) {
                   </Card.Text>
 
                   <hr />
-                  <b>Rp. {numberWithCommas(props.data.harga)}</b>
-                  <div style={{ float: "right" }}>
+                  <b>Rp. {numberWithCommas(props.data.harga)}.-</b>
+                  <div className="tombol-beli-kursus" style={{ float: "right" }}>
                     <Button
-                      variant="primary"
+                      variant="dark"
                       onClick={
                         () =>
                         props.handleShowButton()
@@ -50,7 +53,7 @@ function CardKursusDetail(props) {
                       <i>Beli Kursus</i>
                     </Button>
                     <a
-                      className="text-decoration-none btn -btn-success ml-1"
+                      className="text-decoration-none btn btn-btn-dark ml-1"
                       href={props.data.syllabus}
                       target="_blank"
                     >
@@ -58,6 +61,7 @@ function CardKursusDetail(props) {
                     </a>
                   </div>
                 </Card.Body>
+               </div>
               </div>
             </Card>
           </Col>

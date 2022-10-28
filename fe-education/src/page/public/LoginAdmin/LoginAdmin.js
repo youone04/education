@@ -11,7 +11,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const password = useRef();
   const email = useRef();
-  // const getDataLogin = useSelector((state) => state.login);
+  const getDataLogin = useSelector((state) => state.login);
   // const { token, loading, error } = getDataLogin.login;
 
   const handleLogin = async (e) => {
@@ -31,6 +31,11 @@ export default function Login() {
         }
       );
 
+      if(res.status !== 200) return SweetAlert(
+        "Failed",
+        "Gagal Login!",
+        "error");
+      
       if (res.data.accessToken) {
         const { role } = jwtDecode(res.data.accessToken);
         if (!role.includes("user")) {

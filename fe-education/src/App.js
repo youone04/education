@@ -27,7 +27,7 @@ const ROLES = {
 
 function App() {
   return (
-    <div className="wrapper">
+    <>
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* public route */}
@@ -70,7 +70,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 

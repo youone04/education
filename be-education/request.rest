@@ -1,9 +1,9 @@
 ###
-POST http://localhost:8800/api/registrasi 
+POST https://apieducation.herokuapp.com/api/registrasi 
 Content-Type: application/json 
 
 {
-"name": "yudi", "email": "yudi@yudi.com", "password": "123", "confirmPassword": "123"
+"name": "admin", "email": "admin@admin.com", "password": "123", "confirmPassword": "123"
 }
 
 ###

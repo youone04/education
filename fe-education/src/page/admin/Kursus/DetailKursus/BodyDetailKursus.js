@@ -66,30 +66,30 @@ function BodyDetailKursus(props) {
                   </div>
                   <div className="row">
                     <div className="col-12">
-                      <h4>{props.detailKursus.judul}</h4>
+                      <h4>{props?.detailKursus?.judul || "No Data"}</h4>
                       <div className="post">
                         <div className="col-12">
                           <img
                             className="img-bordered-lg"
                             style={{ width: "100%" }}
-                            src={props.detailKursus.gambar}
+                            src={props?.detailKursus?.gambar || "No Data"}
                             alt="user image"
                           />
                         </div>
-                        <p>{props.detailKursus.deskripsi}</p>
+                        <p>{props?.detailKursus?.deskripsi || "No Data"}</p>
                       </div>
                       <div className="post clearfix">
                         <span className="username">
                           <h3>Jadwal Kursus</h3>
                         </span>
                         <ul>
-                        {props.detailKursus.jadwal.map((j, i) => {
+                        {props?.detailKursus ? props.detailKursus.jadwal.map((j, i) => {
                           return (
-                            <li>
+                            <li key={i}>
                                 {j.hari}{" "}({j.waktu} WIB)
                             </li>
                           );
-                        })}
+                        }):"No Data"}
                         </ul>
                       </div>
                       
@@ -98,7 +98,7 @@ function BodyDetailKursus(props) {
                           <h3>Syllabus Kursus</h3>
                         </span>
                         <a
-                          href={props.detailKursus.syllabus}
+                          href={props?.detailKursus?.syllabus || process.env.REACT_APP_CLIENT}
                           target="_blank"
                           rel="noreferrer"
                           className="btn btn-sm btn-primary"
@@ -117,8 +117,16 @@ function BodyDetailKursus(props) {
                     Silahkan input link kursus setiap jadwal yang sudah ada
                   </p>
                   <br />
-                  <FormAddLink data={props.detailKursus}/>
-                  <ListLink detailKursus={props.detailKursus}/>
+                  {
+                    props?.detailKursus?
+                   <>
+                    <FormAddLink data={props.detailKursus}/>
+                    <ListLink detailKursus={props.detailKursus}/>
+                   </>:
+                    "No Data"
+
+                  }
+                 
                 </div>
               </div>
             </div>

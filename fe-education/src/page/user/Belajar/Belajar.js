@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector, useDispatch } from "react-redux";
 import { getBelajar } from "../../../redux/actions/actionBelajar/actionBelajar";
+import NavbarComp from "../../../components/NavbarComp/NavbarComp";
+import Footer from "../../../components/Footer/Footer";
+import jwtDecode from "jwt-decode";
 
 function Belajar() {
   const { id } = useParams();
@@ -25,20 +28,26 @@ function Belajar() {
         <p>{error}</p>
       ) : (
         <>
-          <h2>Belajar</h2>
-          <div className="d-flex">
-            <Card className="col-6">
-              <Card.Img variant="top" src={data.kursus.gambar} />
+        <NavbarComp/>
+        <div className="container bg-white mt-3">
+          <div className="p-1 mb-3">
+          <h2 className="ml-2">Belajar</h2>
+          </div>
+          <div className="d-flex row">
+            <Card className="col-sm-12 col-lg-6">
+              <Card.Img variant="top mt-2" src={data.kursus.gambar} />
               <Card.Body>
                 <Card.Title>
                   {data.kursus.judul} - {data.batch_pembelian}
                 </Card.Title>
                 <Card.Text>{data.kursus.deskripsi}</Card.Text>
+                <Link className="btn btn-dark" to={`/srtf/${jwtDecode(token).userId}/${id}`}>sertifikat</Link>
               </Card.Body>
             </Card>
-            <Card className="ml-1" style={{ width: "17rem" }}>
+
+            <Card className="ml-1 col-sm-12 col-lg-3">
               <ListGroup.Item>
-                <h3 className="ml-2">List Link</h3>
+                <h3 className="ml-2 p-1">List Link</h3>
               </ListGroup.Item>
 
               <ListGroup
@@ -62,12 +71,12 @@ function Belajar() {
                           <i>{l.keterangan}</i>
                         </p>
                         <a
-                          className="text-decoration-none text-light btn btn-info"
+                          className="text-decoration-none text-light btn btn-dark card-hover"
                           rel="noreferrer"
                           target={"_blank"}
                           href={l.link}
                         >
-                          Klik untuk Belajar via google meet
+                         Kunjungi link untuk melihat
                         </a>
                       </ListGroup.Item>
                     );
@@ -76,9 +85,9 @@ function Belajar() {
               </ListGroup>
             </Card>
 
-            <Card className="ml-1" style={{ width: "18rem" }}>
+            <Card className="ml-1 col-sm-12 col-lg-2">
               <ListGroup.Item>
-                <h4 className="ml-2">Waktu</h4>
+                <h4 className="ml-2 p-1">Waktu</h4>
               </ListGroup.Item>
               <ListGroup
                 variant="flush"
@@ -91,6 +100,8 @@ function Belajar() {
               </ListGroup>
             </Card>
           </div>
+        </div>
+        <Footer/>
         </>
       )}
     </>

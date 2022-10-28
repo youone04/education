@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -57,7 +57,7 @@ function ModalPembayaran(props) {
       formDataGambar.append("gambar", dataGambar.target.files[0]);
       // formDataGambar.append("nama", fileName);
       await axios.post(
-        `http://localhost:8800/api/upload-pembayaran`,
+        `${process.env.REACT_APP_END_POINT}/upload-pembayaran`,
         formDataGambar,
         config
       );

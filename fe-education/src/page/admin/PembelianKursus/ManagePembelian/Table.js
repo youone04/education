@@ -22,7 +22,6 @@ const Table = (props) => {
             `${process.env.REACT_APP_END_POINT}/pembelian-admin/${id}`
           );
     
-          console.log(konfirmasi);
           if (konfirmasi.status === 200) {
             dispatch(getPembelianAdmin());
             return swal("success","success", "success");

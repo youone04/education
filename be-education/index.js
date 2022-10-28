@@ -30,8 +30,6 @@ try {
   // await dbs.users.sync();
   // await dbs.roles.sync();
   // await dbs.kursus.sync();
-  // await dbs.waktu.sync();
-  // await dbs.hari.sync();
   // await dbs.jadwal.sync();
   // await dbs.batch.sync();
   // await dbs.link.sync();
@@ -42,8 +40,9 @@ try {
 }
 app.use(
   cors({
+    origin: process.env.CLIENT_URL,
     credentials: true,
-    origin: "http://localhost:3000",
+
   })
 );
 const __filename = fileURLToPath(import.meta.url);
@@ -71,6 +70,19 @@ app.use("/api", routerPembelian);
 app.use("/api", routerBelajar);
 app.use("/api", routerMetodePembayaran);
 app.use("/api", routerSertfikat);
+
+// app.use("/" , (req, res) => {
+//   res.send({
+//     status: 200,
+//     message: "Welcome Education Online!"
+//   })
+// })
+app.use("/*" , (req, res) => {
+    res.send({
+      status: 404,
+      message: "Routing Not Found!"
+    })
+})
 
 
 app.listen(PORT, () => {

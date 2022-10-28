@@ -12,8 +12,6 @@ function FormAddLink(props) {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = async(data) => {
@@ -23,7 +21,7 @@ function FormAddLink(props) {
         kursuId: props.data.id
       }
   
-      const link = await axios.post(`http://localhost:8800/api/link`, dataSend)
+      const link = await axios.post(`${process.env.REACT_APP_END_POINT}/link`, dataSend)
       if(link.status === 200) {
         swal('success',link.data.message , "success");
         dispatch(getDetailKursus(token, props.data.id));
