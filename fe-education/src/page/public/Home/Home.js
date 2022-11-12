@@ -52,8 +52,8 @@ export default function Home() {
               {data.map((k, i) => {
                 return (
                 //  <Col lg={3}>
-                  <Card className="m-1 col-sm-12 col-lg-3 card-hover card-item-cust" key={i}>
-                    <Card.Img variant="top" src={k.gambar} />
+                  <Card className="m-1 col-sm-12 col-lg-3 card-hover card-item-cust p-0" key={i}>
+                    <Card.Img height={200} variant="top" src={k.gambar} />
                     <Card.Body>
                       <Card.Title>{k.judul}</Card.Title>
                       <Card.Text>{k.deskripsi.slice(0, 70)} . .</Card.Text>
@@ -81,8 +81,8 @@ export default function Home() {
               {data.map((k, i) => {
                 return (
                 //  <Col lg={3}>
-                  <Card className="m-1  col-sm-12 col-lg-3 card-item-cust" key={i}>
-                    <Card.Img variant="top" src={k.gambar} />
+                  <Card className="m-1  col-sm-12 col-lg-3 card-item-cust p-0" key={i}>
+                    <Card.Img height={200} variant="top" src={k.gambar} />
                     <Card.Body>
                       <Card.Title>{k.judul}</Card.Title>
                       <Card.Text>{k.deskripsi.slice(0, 100)} . .</Card.Text>

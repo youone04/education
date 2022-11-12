@@ -34,7 +34,7 @@ function Belajar() {
           <h2 className="ml-2">Belajar</h2>
           </div>
           <div className="d-flex row">
-            <Card className="col-sm-12 col-lg-6">
+            <Card className="col-sm-12 col-lg-5">
               <Card.Img variant="top mt-2" src={data.kursus.gambar} />
               <Card.Body>
                 <Card.Title>
@@ -85,7 +85,7 @@ function Belajar() {
               </ListGroup>
             </Card>
 
-            <Card className="ml-1 col-sm-12 col-lg-2">
+            <Card className="ml-1 col-sm-12 col-lg-3">
               <ListGroup.Item>
                 <h4 className="ml-2 p-1">Waktu</h4>
               </ListGroup.Item>

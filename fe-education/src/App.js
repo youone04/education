@@ -17,6 +17,7 @@ import PendapatanBatch from "./page/admin/PendapatanBatch/PendapatanBatch";
 import PendapatanPengajar from "./page/admin/PendapatanPengajar/PendapatanPengajar";
 import KursusDetail from "./page/public/KursusDetail/KursusDetail";
 import Sertifikat from "./page/user/Sertifikat/Sertifikat";
+import "./index.css";
 
 const ROLES = {
   Root: "root",
